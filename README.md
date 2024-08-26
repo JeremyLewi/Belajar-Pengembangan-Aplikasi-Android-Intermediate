@@ -24,7 +24,7 @@
 - **Custom View** untuk membuat EditText yang sesuai kriteria.
 - **Material Design** untuk tampilan yang modern dan responsif.
 - **JUnit/Mockito** untuk penerapan unit test.
-- **Lottie/Animators** untuk animasi dalam aplikasi.
+- **Property Animation** untuk animasi dalam aplikasi.
 
 ## 📸 Screenshots
 
