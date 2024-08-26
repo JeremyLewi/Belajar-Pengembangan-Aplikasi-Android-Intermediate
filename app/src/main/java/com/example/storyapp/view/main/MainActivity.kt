@@ -20,23 +20,26 @@ import com.example.storyapp.databinding.ActivityMainBinding
 import com.example.storyapp.model.UserPreference
 import com.example.storyapp.view.ViewModelFactory
 import com.example.storyapp.view.adapter.ListStoryAdapter
+import com.example.storyapp.view.adapter.LoadingStateAdapter
 import com.example.storyapp.view.detail.DetailActivity
 import com.example.storyapp.view.login.LoginActivity
+import com.example.storyapp.view.maps.MapsActivity
 import com.example.storyapp.view.upload.UploadActivity
+
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val mainViewModel by viewModels<MainViewModel> {
-        ViewModelFactory(UserPreference.getInstance(dataStore))
+        ViewModelFactory(UserPreference.getInstance(dataStore), this)
     }
+    private val listStoryAdapter = ListStoryAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         supportActionBar?.setTitle(R.string.app_name)
 
@@ -45,56 +48,6 @@ class MainActivity : AppCompatActivity() {
         val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         binding.rvStory.addItemDecoration(itemDecoration)
 
-        mainViewModel.listStory.observe(this) { story ->
-            setStoryData(story)
-        }
-        mainViewModel.isLoading.observe(this) { isLoading ->
-            showLoading(isLoading)
-        }
-
-        binding.fabAddStory.setOnClickListener {
-            startActivity(Intent(this, UploadActivity::class.java))
-            finish()
-        }
-
-        mainViewModel.getLoginSession().observe(this) { isLogin ->
-            if (isLogin) {
-                mainViewModel.getToken().observe(this) { token ->
-                    mainViewModel.getAllStory(token)
-
-                }
-            } else {
-                startActivity(Intent(this, LoginActivity::class.java))
-
-            }
-        }
-
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.option_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.logoutButton) {
-            mainViewModel.logout()
-            finish()
-        } else if (item.itemId == R.id.settingsButton) {
-            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
-        }
-
-
-
-        return super.onOptionsItemSelected(item)
-
-
-    }
-
-
-    private fun setStoryData(story: List<Story>) {
-        val listStoryAdapter = ListStoryAdapter(ArrayList(story))
         listStoryAdapter.setOnItemClickCallback(object :
             ListStoryAdapter.OnItemClickCallback {
             override fun onItemClicked(data: Story) {
@@ -105,14 +58,58 @@ class MainActivity : AppCompatActivity() {
             }
         })
         binding.rvStory.adapter = listStoryAdapter
+        binding.rvStory.adapter = listStoryAdapter.withLoadStateFooter(
+            footer = LoadingStateAdapter { listStoryAdapter.retry() }
+        )
+
+        mainViewModel.getLoginSession().observe(this) { isLogin ->
+            if (isLogin) {
+                mainViewModel.getToken().observe(this) {
+                    mainViewModel.getAllStory.observe(this) { story ->
+                        listStoryAdapter.submitData(lifecycle, story)
+                    }
+                    mainViewModel.isLoading.observe(this) { isLoading ->
+                        showLoading(isLoading)
+                    }
+                }
+            } else {
+                startActivity(Intent(this, LoginActivity::class.java))
+            }
+        }
+
+        binding.fabAddStory.setOnClickListener {
+            startActivity(Intent(this, UploadActivity::class.java))
+            finish()
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.option_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.logoutButton -> {
+                mainViewModel.logout()
+                finish()
+            }
+            R.id.settingsButton -> {
+                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+            }
+            R.id.maps -> {
+                startActivity(Intent(this, MapsActivity::class.java))
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
-
-
 }
+
 
 
 

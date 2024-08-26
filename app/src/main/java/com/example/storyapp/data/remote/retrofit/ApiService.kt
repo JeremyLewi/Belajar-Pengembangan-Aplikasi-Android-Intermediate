@@ -21,21 +21,36 @@ interface ApiService {
     @FormUrlEncoded
     @POST("login")
     fun login(
-        @Field("email") email: String,
-        @Field("password") password: String
+        @Field("email") email: String, @Field("password") password: String
     ): Call<LoginResponse>
 
     @GET("stories")
-    fun getAllStory(
+    suspend fun getAllStory(
+        @Header("Authorization") token: String,
+        @Query("page") page: Int,
+        @Query("size") size: Int,
+    ): StoryResponse
+
+    @GET("stories")
+    fun getAllWidgetStory(
         @Header("Authorization") token: String,
     ): Call<StoryResponse>
+
+    @GET("stories")
+    fun getAllStoryLocation(
+        @Header("Authorization") token: String,
+        @Query("location") location: Int,
+
+        ): Call<StoryResponse>
 
     @Multipart
     @POST("stories")
     fun uploadStory(
         @Header("Authorization") token: String,
         @Part("description") description: RequestBody,
-        @Part file: MultipartBody.Part
+        @Part file: MultipartBody.Part,
+        @Part("lat") lat: RequestBody?,
+        @Part("lon") lon: RequestBody?
     ): Call<NewStoryResponse>
 
 }

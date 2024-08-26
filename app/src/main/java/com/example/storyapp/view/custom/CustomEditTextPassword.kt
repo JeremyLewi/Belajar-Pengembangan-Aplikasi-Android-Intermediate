@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
+import com.example.storyapp.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
@@ -46,7 +47,7 @@ class CustomEditTextPassword : TextInputEditText {
                     )
                     setCompoundDrawables(null, null, errorIcon, null)
 
-                    textInputLayout?.error = "Password harus terdiri dari minimal 8 karakter"
+                    textInputLayout?.error = context.getString(R.string.password_error)
                 } else {
                     setCompoundDrawables(null, null, null, null)
                     textInputLayout?.error = null

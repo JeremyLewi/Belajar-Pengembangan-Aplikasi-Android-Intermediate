@@ -91,7 +91,7 @@ class StoryRemoteViewsFactory(private val context: Context, private val appWidge
     }
 
     private fun fetchData(token: String): List<Story> {
-        val response = ApiConfig.getApiService().getAllStory("Bearer $token").execute()
+        val response = ApiConfig.getApiService().getAllWidgetStory("Bearer $token" ).execute()
         val stories = if (response.isSuccessful) {
             response.body()?.listStory ?: emptyList()
         } else {

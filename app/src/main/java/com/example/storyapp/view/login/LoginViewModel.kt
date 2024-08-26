@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.example.storyapp.data.remote.response.LoginResponse
 import com.example.storyapp.data.remote.retrofit.ApiConfig
 import com.example.storyapp.model.UserPreference
+import com.example.storyapp.view.EspressoIdlingResource
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,6 +20,7 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel() {
 
 
     fun login(email: String, password: String) {
+        EspressoIdlingResource.increment()
         _isLoading.value = true
         val client = ApiConfig.getApiService().login(email, password)
         client.enqueue(object : Callback<LoginResponse> {
@@ -49,11 +51,13 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel() {
                     }
 
                 }
+                EspressoIdlingResource.decrement()
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 _isLoading.value = false
                 _errorMessage.postValue(t.message ?: "An error occurred")
+                EspressoIdlingResource.decrement()
             }
         })
     }

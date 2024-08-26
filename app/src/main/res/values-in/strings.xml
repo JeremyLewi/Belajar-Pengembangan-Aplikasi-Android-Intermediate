@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Aplikasi Story</string>
     <string name="register">Daftar</string>
     <string name="login">Masuk</string>
     <string name="title_signup_page">Lengkapi data Anda di bawah ini</string>
@@ -9,7 +8,6 @@
     <string name="message_login_page">Sebelum itu, mari isi data diri Anda terlebih dahulu</string>
     <string name="title_login_page">Siap untuk memulai petualangan dalam cerita baru?</string>
     <string name="name">Nama</string>
-    <string name="copyright" translatable="false">© 2023 Bangkit</string>
     <string name="message_main_page">Selamat datang di Aplikasi Story.</string>
     <string name="greeting">Hello %1$s,</string>
     <string name="logout">Keluar</string>
@@ -25,9 +23,20 @@
     <string name="sign_up">Daftar</string>
     <string name="already_have_an_account">Sudah Punya Akun?</string>
     <string name="sign_in">Masuk</string>
-    <string name="appwidget_text" translatable="false">Story Widget</string>
     <string name="add_widget">tambah widget</string>
     <string name="app_widget_description">Ini adalah deskripsi widget aplikasi</string>
     <string name="detail_name">Detail Story</string>
     <string name="settings">Pengaturan</string>
+    <string name="password_error">Password harus terdiri dari minimal 8 karakter</string>
+    <string name="email_error">Format email salah</string>
+    <string name="title_activity_maps">Peta</string>
+    <string name="retry">retry</string>
+    <string name="use_current_location">Gunakan lokasi saat ini</string>
+    <string name="latitude">Latitude : </string>
+    <string name="longitude">Longitude : </string>
+    <string name="location_failed">Gagal mendapatkan lokasi</string>
+    <string name="upload_success">Berhasil mengunggah cerita</string>
+    <string name="file_required">Silakan masukkan berkas gambar terlebih dahulu.</string>
+    <string name="camera_permission_required">Izin kamera diperlukan untuk mengambil foto.</string>
+    <string name="location_permission_required">Izin lokasi diperlukan untuk mendapatkan lokasi.</string>
 </resources>

@@ -23,9 +23,13 @@ class DetailActivity : AppCompatActivity() {
 
         val story = intent.getParcelableExtra<Story>(EXTRA_STORY)
 
-        binding.tvDetailName.text = story?.name
-        binding.tvDetailDescription.text = story?.description
-        Glide.with(this).load(story?.photoUrl).into(binding.ivDetailPhoto)
+
+
+        binding.apply {
+            tvDetailName.text = story?.name
+            tvDetailDescription.text = story?.description
+            Glide.with(this@DetailActivity).load(story?.photoUrl).into(ivDetailPhoto)
+        }
 
         startProgress()
     }

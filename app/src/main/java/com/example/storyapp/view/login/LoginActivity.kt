@@ -24,7 +24,7 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(na
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val loginViewModel by viewModels<LoginViewModel> {
-        ViewModelFactory(UserPreference.getInstance(dataStore))
+        ViewModelFactory(UserPreference.getInstance(dataStore) , this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

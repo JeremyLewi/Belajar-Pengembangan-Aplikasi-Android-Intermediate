@@ -4,6 +4,10 @@
     <group android:menuCategory="container">
 
         <item
+            android:id="@+id/maps"
+            android:title="Open Maps" />
+
+        <item
             android:id="@+id/settingsButton"
             android:title="@string/settings" />
         <item
