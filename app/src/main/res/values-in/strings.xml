@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aplikasi Story</string>
+    <string name="register">Daftar</string>
+    <string name="login">Masuk</string>
+    <string name="title_signup_page">Lengkapi data Anda di bawah ini</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="message_login_page">Sebelum itu, mari isi data diri Anda terlebih dahulu</string>
+    <string name="title_login_page">Siap untuk memulai petualangan dalam cerita baru?</string>
+    <string name="name">Nama</string>
+    <string name="copyright" translatable="false">© 2023 Bangkit</string>
+    <string name="message_main_page">Selamat datang di Aplikasi Story.</string>
+    <string name="greeting">Hello %1$s,</string>
+    <string name="logout">Keluar</string>
+    <string name="don_t_have_an_account_sign_up">Tidak Punya Akun? </string>
+    <string name="add_story">tambah story</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">galeri</string>
+    <string name="upload">unggah</string>
+    <string name="enter_description">Masukkan Deskripsi</string>
+    <string name="story_photo">foto story</string>
+    <string name="story_description">deskripsi story</string>
+    <string name="dont_have_an_account">Tidak punya Akun?</string>
+    <string name="sign_up">Daftar</string>
+    <string name="already_have_an_account">Sudah Punya Akun?</string>
+    <string name="sign_in">Masuk</string>
+    <string name="appwidget_text" translatable="false">Story Widget</string>
+    <string name="add_widget">tambah widget</string>
+    <string name="app_widget_description">Ini adalah deskripsi widget aplikasi</string>
+    <string name="detail_name">Detail Story</string>
+    <string name="settings">Pengaturan</string>
+</resources>

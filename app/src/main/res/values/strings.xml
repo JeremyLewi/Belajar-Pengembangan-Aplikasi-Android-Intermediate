@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name" translatable="false">Story App</string>
+    <string name="register">Register</string>
+    <string name="login">Login </string>
+    <string name="title_signup_page">Complete your details below</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="message_login_page">Before that, let\'s fill in your details first</string>
+    <string name="title_login_page">Ready to start an adventure in a new story?</string>
+    <string name="name">Name</string>
+    <string name="copyright" translatable="false">© 2023 Bangkit</string>
+    <string name="message_main_page">Welcome to the Story App.</string>
+    <string name="greeting">Hello %1$s,</string>
+    <string name="logout">Logout</string>
+    <string name="don_t_have_an_account_sign_up">don\'t have an account? sign up</string>
+    <string name="add_story">add story</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">gallery</string>
+    <string name="upload">upload</string>
+    <string name="enter_description">Enter description</string>
+    <string name="story_photo">story photo</string>
+    <string name="story_description">story description</string>
+    <string name="dont_have_an_account">Dont have an account?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="sign_in">Sign in</string>
+    <string name="appwidget_text" translatable="false">Story Widget</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
+    <string name="detail_name">Detail Story</string>
+    <string name="settings">Settings</string>
+
+</resources>
